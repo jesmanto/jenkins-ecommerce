@@ -227,12 +227,68 @@ stages{
 }
 ```
 
-Each step of the jobis contained in the `stage` object
+>Each step of the job is contained in the `stage` object
+
+- This stage is used to install dependencies in the app
+```
+stage('Install Dependencies') {
+    steps {
+        dir('backend') {
+            sh 'npm install'
+        }
+    }
+}
+```
+- Run Tests stage
+```
+stage('Run Tests') {
+            steps {
+                dir('backend') {
+                    sh 'npm test'
+                }
+            }
+        }
+```
+
+- Build Docker Image stage
+```
+stage('Build Docker Image') {
+    steps {
+        sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+    }
+}
+```
+- Push image to registry
+```
+stage('Push to Docker Hub') {
+    steps {
+        withDockerRegistry([credentialsId: 'dockerhub-credentials', url: '']) {
+                sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+        }
+    }
+}
+```
+
 
 ## Challenges Faced
 ### Creating a with Node and React
 #### Solution: 
 I used the internet to learn how to create a simple web appliccation with code and other frontend tools.
 
-### Pipeline Construction
+### Pipeline Creation
 When adding builds steps to the freestyle job, I used `Echo` instead of using `echo` in a shell script. So this made my first build to fail.
+
+## Demonstration of Freestyle Job
+The images below shows a detailed demo of the job
+    ![](./img/freestyle1.png)
+    ![](./img/freestyle2.png)
+    ![](./img/freestyle3.png)
+
+## Best Practices
+- Ensure proper security measures are followed to avoid unwanted access
+- Use environment variables and credentials above manual data inputs
+
+
+## Lessons Learnt
+- Freestyle projects don't use Jenkinsfile for build. The build steps are manually inputed
+- The package manager of my programming stack needs to be installed in the server before jenkins can build properly.

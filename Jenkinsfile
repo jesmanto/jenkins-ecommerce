@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'jesmanto/node-ecommerce-app'
+        IMAGE_NAME = 'jesmanto/node-ecommerce'
         IMAGE_TAG = 'latest'
     }
 
