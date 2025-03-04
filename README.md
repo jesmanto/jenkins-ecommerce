@@ -232,6 +232,7 @@ Each step of the jobis contained in the `stage` object
 ## Challenges Faced
 ### Creating a with Node and React
 #### Solution: 
-I used the internet to learn how to create a 
+I used the internet to learn how to create a simple web appliccation with code and other frontend tools.
 
 ### Pipeline Construction
+When adding builds steps to the freestyle job, I used `Echo` instead of using `echo` in a shell script. So this made my first build to fail.
