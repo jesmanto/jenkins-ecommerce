@@ -228,3 +228,10 @@ stages{
 ```
 
 Each step of the jobis contained in the `stage` object
+
+## Challenges Faced
+### Creating a with Node and React
+#### Solution: 
+I used the internet to learn how to create a 
+
+### Pipeline Construction
